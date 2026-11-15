@@ -2,15 +2,18 @@
 
 This repository is a helper workspace for Android NDK and CMake builds.
 
-## Install tools from Google
+## Toolchain packages
 
-Google's direct download URLs tested for this repository currently return
-HTTP 404. Install the desired NDK and CMake packages using Android SDK
-Command-line Tools instead; this also avoids committing redistributable
-toolchain binaries to a public repository.
+This repository provides Android NDK `30.0.16248370` and Android SDK CMake
+`3.31.6`. The packages are stored as 40 MiB chunks under `packages/` to fit
+GitHub's per-file limit. Download/clone the repository, then join each
+package's numbered `.partNNNN` files in order before extracting its archive.
+For example:
 
 ```sh
-sdkmanager --install "ndk;<version>" "cmake;<version>"
+cat packages/android-ndk-r30-linux.zip.parts/android-ndk-r30-linux.zip.part* \
+  > android-ndk-r30-linux.zip
+unzip android-ndk-r30-linux.zip
 ```
 
 For an Android CMake project, configure with the NDK toolchain file:
