@@ -5,7 +5,7 @@ This repository is a helper workspace for Android NDK and CMake builds.
 ## Toolchain packages
 
 This repository provides Android NDK `30.0.16248370`, Android SDK CMake
-`3.31.6`, Gradle `8.14.3`, and Eclipse Temurin JDK `17.0.21+9` (Linux x64).
+`3.31.6`, Gradle `9.3.0`, and Eclipse Temurin JDK `25.0.5+8` (Linux x64).
 The packages are stored as 40 MiB chunks under `packages/` to fit GitHub's
 per-file limit. Clone the repo and join the relevant numbered chunks in order.
 For the NDK and CMake `.tar.zst` packages:
@@ -23,14 +23,14 @@ is provided as its original ZIP, and the JDK as its original gzip-compressed
 tar archive. For example, reassemble and verify Gradle with:
 
 ```sh
-cat packages/gradle-8.14.3-bin.zip.parts/gradle-8.14.3-bin.zip.part* \
-  > packages/gradle-8.14.3-bin.zip
+cat packages/gradle-9.3.0-bin.zip.parts/gradle-9.3.0-bin.zip.part* \
+  > packages/gradle-9.3.0-bin.zip
 (cd packages && sha256sum -c SHA256SUMS)
-unzip packages/gradle-8.14.3-bin.zip
+unzip packages/gradle-9.3.0-bin.zip
 ```
 
 Reassemble the JDK similarly from
-`packages/temurin-17.0.21+9-linux-x64.tar.gz.parts/`, then extract with
+`packages/temurin-25.0.5+8-linux-x64.tar.gz.parts/`, then extract with
 `tar -xzf`.
 
 For an Android CMake project, configure with the NDK toolchain file:
@@ -42,5 +42,4 @@ cmake -S . -B build \
   -DANDROID_PLATFORM=android-<api>
 ```
 
-Check the applicable Google SDK/NDK license before redistributing downloaded
-packages. This repository intentionally does not include the toolchain.
+Check the applicable licenses for the included toolchains before redistribution.
