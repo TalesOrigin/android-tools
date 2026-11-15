@@ -20,8 +20,18 @@ tar --use-compress-program=unzstd -xf android-ndk-r30-linux.tar.zst \
 
 Use the same steps with `android-cmake-3.31.6-linux.tar.zst` for CMake. Gradle
 is provided as its original ZIP, and the JDK as its original gzip-compressed
-tar archive. Reassemble each archive with `cat packages/<archive>.parts/<archive>.part* > <archive>`,
-then extract it with `unzip` or `tar -xzf`.
+tar archive. For example, reassemble and verify Gradle with:
+
+```sh
+cat packages/gradle-8.14.3-bin.zip.parts/gradle-8.14.3-bin.zip.part* \
+  > packages/gradle-8.14.3-bin.zip
+(cd packages && sha256sum -c SHA256SUMS)
+unzip packages/gradle-8.14.3-bin.zip
+```
+
+Reassemble the JDK similarly from
+`packages/temurin-17.0.21+9-linux-x64.tar.gz.parts/`, then extract with
+`tar -xzf`.
 
 For an Android CMake project, configure with the NDK toolchain file:
 
